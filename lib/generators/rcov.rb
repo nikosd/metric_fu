@@ -28,6 +28,10 @@ module MetricFu
         {:content => @content, :was_run => @was_run}
       end
     end
+    
+    def self.success?
+      @@success
+    end
 
     def emit
       begin
@@ -35,8 +39,10 @@ module MetricFu
         Dir.mkdir(MetricFu::Rcov.metric_directory)
         test_files = FileList[*MetricFu.rcov[:test_files]].join(' ')
         rcov_opts = MetricFu.rcov[:rcov_opts].join(' ')
-        output = ">> #{MetricFu::Rcov.metric_directory}/rcov.txt"
-        `rcov #{test_files} #{rcov_opts} #{output}`
+        output = "#{MetricFu::Rcov.metric_directory}/rcov.txt"
+        @@success = Kernel.system("rcov #{test_files} #{rcov_opts} >> #{output}")
+        print_head(output)
+        @@success
       rescue LoadError
         if RUBY_PLATFORM =~ /java/
           puts 'running in jruby - rcov tasks not available'
@@ -82,6 +88,16 @@ module MetricFu
     def to_h
       global_percent_run = ((@global_total_lines_run.to_f / @global_total_lines.to_f) * 100)
       {:rcov => @rcov.merge({:global_percent_run => round_to_tenths(global_percent_run) })}   
+    end
+    
+    private
+    # Copy rcov build log to stdout
+    def print_head(output)
+      File.open(output, 'r') do |f| 
+        while ((line = f.gets) && !(line =~ /^=*$/)) do #Stop printing when reaching the '========' marker
+         puts line 
+        end
+      end
     end
   end
 end

@@ -18,5 +18,6 @@ namespace :metrics do
     if MetricFu.report.open_in_browser?
       MetricFu.report.show_in_browser(MetricFu.output_directory)
     end
+    raise "Tests failed" unless MetricFu::Rcov.success?
   end
 end
