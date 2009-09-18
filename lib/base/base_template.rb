@@ -116,7 +116,7 @@ module MetricFu
     def file_url(name, line) # :nodoc:
       filename = File.expand_path(name.gsub(/^\//, ''))
       if MetricFu.configuration.platform.include?('darwin')
-        "txmt://open/?url=file://#{filename}" << (line ? "&line=#{line}" : "")
+        "txmt://open/?url=file://#{filename}" << (line ? "&amp;line=#{line}" : "")
       else 
        "file://#{filename}"
       end

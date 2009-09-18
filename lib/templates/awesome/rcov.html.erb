@@ -2,7 +2,7 @@
 
 <p>C0 code coverage information.</p>
 
-<img src="rcov.png?<%= Time.now %>">
+<img src="rcov.png?<%= rand(2000) %>" alt="C0 coverage graph"/>
 
 <p>Total Coverage: <%= @rcov[:global_percent_run] %>% </p>
 <table>
@@ -27,7 +27,7 @@
     <% file[:lines].each_with_index do |line, index| %>
       <tr>
         <% css_class = line[:was_run] ? "rcov_run" : "rcov_not_run" %>
-        <td class="<%= css_class %>"><%= link_to_filename(fname, index + 1, "<pre>#{line[:content]}</pre>") %></td>
+        <td class="<%= css_class %>"><pre><%= link_to_filename(fname, index + 1, "<!-- <![CDATA[ -->#{line[:content]}<!-- ]]> -->") %></pre></td>
       </tr>
     <% end %>
     </table>
