@@ -41,7 +41,7 @@ module MetricFu
         rcov_opts = MetricFu.rcov[:rcov_opts].join(' ')
         output = "#{MetricFu::Rcov.metric_directory}/rcov.txt"
         @@success = Kernel.system("rcov #{test_files} #{rcov_opts} >> #{output}")
-        print_head(output)
+        print_head
         @@success
       rescue LoadError
         if RUBY_PLATFORM =~ /java/
@@ -92,12 +92,9 @@ module MetricFu
     
     private
     # Copy rcov build log to stdout
-    def print_head(output)
-      File.open(output, 'r') do |f| 
-        while ((line = f.gets) && !(line =~ /^=*$/)) do #Stop printing when reaching the '========' marker
-         puts line 
-        end
-      end
+    def print_head
+      output = File.open(MetricFu::Rcov.metric_directory + '/rcov.txt').read
+      puts output.split(NEW_FILE_MARKER).first
     end
   end
 end
