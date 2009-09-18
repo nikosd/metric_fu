@@ -4,14 +4,14 @@
 
 <img src="rcov.png?<%= Time.now %>">
 
-<p>Total Coverage: <%= @rcov.delete(:global_percent_run) %>% </p>
+<p>Total Coverage: <%= @rcov[:global_percent_run] %>% </p>
 <table>
   <tr>
     <th>File Path</th>
     <th>Percent run</th>
   </tr>
   <% count = 0 %>
-  <% @rcov.sort_by{ |k,v| v[:percent_run] }.each do |fname, file| %>
+  <% @rcov.files.sort_by{ |k,v| v[:percent_run] }.each do |fname, file| %>
     <tr>
       <td><a href="#<%= fname.gsub(/[^a-z]+/, '_') %>"><%= fname %></a></td>
       <td><%= file[:percent_run] %></td>
@@ -20,7 +20,7 @@
   <% end %>
 </table>
 
-<% @rcov.sort_by{ |k,v| v[:percent_run] }.each do |fname, file| %>
+<% @rcov.files.sort_by{ |k,v| v[:percent_run] }.each do |fname, file| %>
   <h2 id="<%= fname.gsub(/[^a-z]+/, '_') %>"> <%= fname %></h2>
   <div class="rcov_overflow">
     <table class="rcov_code">

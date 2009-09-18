@@ -210,6 +210,9 @@ a {
           color: #337022; }
         #content #projects li a.failed {
           color: #ff1100; }
+        #content #projects li a span.totals {
+          font-size: 0.5em;
+          padding-left: 1em;}
       #content #projects li .meta {
         position: absolute;
         right: .6em;

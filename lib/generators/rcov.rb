@@ -86,7 +86,11 @@ module MetricFu
 
     def to_h
       global_percent_run = ((@global_total_lines_run.to_f / @global_total_lines.to_f) * 100)
-      {:rcov => @rcov.merge({:global_percent_run => round_to_tenths(global_percent_run) })}
+      result = @rcov.merge({:global_percent_run => round_to_tenths(global_percent_run) })
+      def result.files
+        select {|k,v| k != :global_percent_run}
+      end
+      {:rcov => result}
     end
 
     private
