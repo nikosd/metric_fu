@@ -10,7 +10,7 @@
     </tr>
     <% @saikuro[:methods].each do |method| %>
     <tr>
-      <td><%= method[:name] %></td>
+      <td><%= encode(method[:name]) %></td>
       <td><%= method[:complexity] %></td>
       <td><%= method[:lines] %></td>
     </tr>
@@ -28,7 +28,7 @@
     </tr>
     <% @saikuro[:classes].each do |klass| %>
     <tr>
-      <td><%= klass[:name] %></td>
+      <td><%= encode(klass[:name]) %></td>
       <td><%= klass[:complexity] %></td>
       <td><%= klass[:lines] %></td>
     </tr>
@@ -53,7 +53,7 @@
           <% klass[:methods].each do |method| %>
             <tr>
               <td>
-                <%= method[:name] %>
+                <%= encode(method[:name]) %>
               </td>
               <td>
                 <%= method[:complexity] %> 

@@ -2,7 +2,7 @@
 
 <p><a href="http://reek.rubyforge.org/">Reek</a> detects common code smells in ruby code.</p>
 
-<img src="reek.png?<%= Time.now %>">
+<%= graph_image('reek.png', :alt => "Code smells graph") %>
 
 <table>
   <tr>
@@ -17,13 +17,13 @@
       <tr class='<%= cycle("light", "dark", count) %>'>
         <td><%= link_to_filename(match[:file_path]) %></td>
         <td>
-          <%= smell[:method] %>
+          <%= encode(smell[:method]) %>
         </td>
         <td>
-          <%= smell[:message] %>
+          <%= encode(smell[:message]) %>
         </td>
         <td>
-          <%= smell[:type] %>
+          <%= encode(smell[:type]) %>
         </td>
       </tr>
       <% count += 1 %>

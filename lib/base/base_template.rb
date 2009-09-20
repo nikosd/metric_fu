@@ -121,6 +121,18 @@ module MetricFu
        "file://#{filename}"
       end
     end
+    
+    # Replaces <,> and & with their entities
+    def encode(content)
+      content.gsub!('&', '&amp;')
+      {'<' => '&lt;', '>' => '&gt;'}.each_pair { |s,r| content.gsub!(s,r)}
+      content
+    end
+
+    def graph_image(file, html_options = {})
+      attributes = {:alt => 'Graph image'}.merge(html_options).map{|k,v| "#{k}='#{v}'"}
+      "<img src='#{file}?#{rand(2000)}' #{attributes}/>"
+    end
 
     # Provides a brain dead way to cycle between two values during
     # an iteration of some sort.  Pass in the first_value, the second_value,

@@ -2,7 +2,7 @@
 
 <p><a href='http://ruby.sadi.st/Flay.html'>Flay</a> analyzes ruby code for structural similarities.</p>
 
-<img src="flay.png?<%= Time.now %>">
+<%= graph_image('flay.png', :alt => "Structural similarities graph") %>
 
 <h4>Total Score (lower is better): <%= @flay[:total_score] %></h4>
 
@@ -19,7 +19,7 @@
           <%= link_to_filename(file[:name], file[:line]) %><br/>
         <% end %>
       </td>
-      <td><%= match[:reason] %></td>
+      <td><%= encode(match[:reason]) %></td>
     </tr>
     <% count += 1 %>
   <% end %>

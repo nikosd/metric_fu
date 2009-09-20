@@ -1,7 +1,7 @@
 <h3>Flog Results</h3>
 <p><a href='http://ruby.sadi.st/Flog.html'>Flog</a> measures code complexity.</p>
 
-<img src="flog.png?<%= Time.now %>">
+<%= graph_image('flog.png', :alt => "Code complexity graph") %>
 
 <h2>Total Flog score for all methods: <%= @flog[:total]%></h2>
 <h2>Average Flog score for all methods: <%= @flog[:average]%></h2>
@@ -28,7 +28,7 @@
 <% @flog[:pages].each do |page| %>
   <h2 id="<%= page[:path].gsub(/[^a-z]+/, '_') %>"><%= link_to_filename page[:path] %></h2>
     <% page[:scanned_methods].each do |sm| %>
-      <p><%= sm[:name] %></p>
+      <p><%= encode(sm[:name]) %></p>
       <p>Total Score: <%=sm[:score]%></p>
       <table>
         <tr>
@@ -38,7 +38,7 @@
         <% sm[:operators].each do |operator| %>
           <tr>
             <td><%= operator[:score] %></td>
-            <td><%= operator[:operator] %></td>
+            <td><%= encode(operator[:operator]) %></td>
           </tr>
         <% end %>
       </table>
