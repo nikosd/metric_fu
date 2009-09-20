@@ -109,7 +109,7 @@ describe MetricFu::Template do
         File.stub!(:expand_path).with('filename').and_return('/expanded/filename')
         result = @template.send(:link_to_filename, 'filename', 6)
         result.should eql("<a href='txmt://open/?url=file://" \
-                         + "/expanded/filename&line=6'>filename:6</a>")
+                         + "/expanded/filename&amp;line=6'>filename:6</a>")
       end
 
       describe "and given link text" do
@@ -117,7 +117,7 @@ describe MetricFu::Template do
           File.stub!(:expand_path).with('filename').and_return('/expanded/filename')
           result = @template.send(:link_to_filename, 'filename', 6, 'link content')
           result.should eql("<a href='txmt://open/?url=file://" \
-                           + "/expanded/filename&line=6'>link content</a>")
+                           + "/expanded/filename&amp;line=6'>link content</a>")
         end
       end
     end
