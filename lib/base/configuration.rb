@@ -100,6 +100,7 @@ module MetricFu
       @scratch_directory = File.join(@base_directory, 'scratch')
       @output_directory = File.join(@base_directory, 'output')
       @data_directory = File.join('tmp/metric_fu', '_data')
+      @daily_data_resolution = true
       @metric_fu_root_directory = File.join(File.dirname(__FILE__), 
                                                         '..', '..')
       @template_directory =  File.join(@metric_fu_root_directory, 
@@ -174,6 +175,10 @@ module MetricFu
       else
         @code_dirs = ['lib']
       end
+    end
+
+    def data_filename
+      @daily_data_resolution ? "#{Time.now.strftime("%Y%m%d")}.yml" : "#{Time.now.strftime("%Y%m%d%H%M")}.yml"
     end
     
     def platform #:nodoc:

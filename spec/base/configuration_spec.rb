@@ -297,4 +297,24 @@ describe MetricFu::Configuration do
       end
     end
   end
+  
+  describe "#data_filename" do
+    before(:each) { get_new_config }
+    describe "when daily_data_resolution is set" do
+      before(:each) do
+        @config.instance_variable_set(:@daily_data_resolution, true)
+      end
+      it "should return a filename with 8 digits" do
+        @config.data_filename.should == "#{Time.now.strftime("%Y%m%d")}.yml"
+      end
+    end
+    describe "when daily_data_resolution is NOT set" do
+      before(:each) do
+        @config.daily_data_resolution = false
+      end
+      it "should return a filename with 12 digits" do
+        @config.data_filename.should == "#{Time.now.strftime("%Y%m%d%H%M")}.yml"
+      end
+    end
+  end
 end

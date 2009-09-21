@@ -9,7 +9,7 @@ namespace :metrics do
                                 "report.yml")
     MetricFu.report.save_output(MetricFu.report.to_yaml,
                                 MetricFu.data_directory, 
-                                "#{Time.now.strftime("%Y%m%d")}.yml")
+                                MetricFu.data_filename)
     MetricFu.report.save_templatized_report
     
     MetricFu.graphs.each {|graph| MetricFu.graph.add(graph) }
