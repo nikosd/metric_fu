@@ -26,6 +26,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency("flay", [">= 1.2.1"])
   s.add_dependency("flog", [">= 2.1.0"])
-  s.add_dependency("relevance-rcov", [">= 0.8.3.3"])
+  s.add_dependency("hooligan495-rcov", [">= 0.9.1"])
   s.add_dependency("mojombo-chronic", [">= 0.3.0"])
 end
