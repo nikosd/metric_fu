@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--main", "README"]
   s.extra_rdoc_files = ["HISTORY", "Manifest.txt", "README"]
 
-  s.add_dependency("flay", [">= 1.2.1"])
-  s.add_dependency("flog", [">= 2.1.0"])
+  s.add_dependency("flay", [">= 1.4.0"])
+  s.add_dependency("flog", [">= 2.2.0"])
   s.add_dependency("hooligan495-rcov", [">= 0.9.1"])
   s.add_dependency("mojombo-chronic", [">= 0.3.0"])
 end
