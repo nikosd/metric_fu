@@ -16,16 +16,16 @@ module MetricFu
         Dir.mkdir(MetricFu::Dcov.metric_directory)
 
         #what files are we going to test
-        test_files = MetricFu.dcov[:test_files].join(' ')
+        test_files = MetricFu.dcov[:dirs_to_dcov].map{ |dir| Dir[File.join(dir, "**/*.rb")] }.join(' ')
 
         #set Dcov Options (See dcov rdocs)
-        dcov_opts = MetricFu.dcov[:dcov_opts].nil? ? "" : MetricFu.dcov[:dcov_opts].join(' ')
+        dcov_opts = MetricFu.dcov[:dcov_opts].nil? ? "-p #{MetricFu.dcov[:ouput_directory]}" : MetricFu.dcov[:dcov_opts].join(' ')
 
         #setup place to store output
-        output = "> #{MetricFu::Dcov.metric_directory}/dcov.txt 2>/dev/null"
+        metrics_output = "> #{MetricFu::Dcov.metric_directory}/dcov.txt 2>/dev/null"
 
         #actually do the test
-        `dcov #{dcov_opts} #{test_files} #{output}`
+        `dcov #{dcov_opts} #{test_files} #{metrics_output}`
     end
 
     # Parses the output file into a hash for use by template, abstract method override

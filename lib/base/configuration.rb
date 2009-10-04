@@ -113,7 +113,7 @@ module MetricFu
       @flog     = { :dirs_to_flog => @code_dirs  }
       @reek     = { :dirs_to_reek => @code_dirs  }
       @roodi    = { :dirs_to_roodi => @code_dirs }
-      @saikuro  = { :output_directory => @scratch_directory + '/saikuro', 
+      @saikuro  = { :output_directory => @scratch_directory + '/saikuro',
                     :input_directory => @code_dirs,
                     :cyclo => "",
                     :filter_cyclo => "0",
@@ -131,9 +131,8 @@ module MetricFu
                                    "--profile",
                                    "--rails",
                                    "--exclude /gems/,/Library/,/usr/,spec"]}
-      @dcov     = {:test_files => ['app/**/*.rb', 'lib/**/*.rb'],
-                   :dcov_opts => ["-p tmp/metric_fu/scratch/dcov"]}
-                                   
+      @dcov     = { :dirs_to_dcov => @code_dirs,
+                    :output_directory => @scratch_directory + '/dcov' }
       @graph_theme = { :colors => %w(orange purple green white red blue pink yellow),
                        :marker_color => 'blue',
                        :background_colors => %w(white white)}

@@ -115,8 +115,15 @@ describe MetricFu::Configuration do
               should == {}
     end
 
-    it 'should set @rcov to { :test_files => ["test/**/*_test.rb", 
-                                              "spec/**/*_spec.rb"] 
+    it 'should set @dcov to { :dirs_to_dcov => @code_dirs
+                              :output_directory => @scratch_directory + "/dcov" }' do
+    @config.instance_variable_get(:@dcov).
+            should ==  { :dirs_to_dcov => ['lib'],
+                         :output_directory => "#{scratch_directory}/dcov" }
+    end
+
+    it 'should set @rcov to { :test_files => ["test/**/*_test.rb",
+                                              "spec/**/*_spec.rb"],
                               :rcov_opts  => ["--sort coverage",   
                                               "--no-html",         
                                               "--text-coverage",   
