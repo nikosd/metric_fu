@@ -18,29 +18,12 @@
       <h1><a href="/">metrics</a> | <a href="index.html"><%= @name %></a></h1>
 
       <ul id='projects'>
-      <% if @churn %>
-         <li class='even failure <%= (@current_section == :churn) ? "active" : "" %>'><a href="churn.html">Churn</a></li>
-      <% end %>
-      <% if @flay %>
-        <li class='even failure <%= (@current_section == :flay) ? "active" : "" %>'><a href="flay.html">Flay</a></li>
-      <% end %>
-      <% if @flog %>
-        <li class='even failure <%= (@current_section == :flog) ? "active" : "" %>'><a href="flog.html">Flog</a></li>
-      <% end %>
-      <% if @rcov %>
-        <li class='even failure <%= (@current_section == :rcov) ? "active" : "" %>'><a href="rcov.html">Rcov</a></li>
-      <% end %>
-      <% if @reek %>
-        <li class='even failure <%= (@current_section == :reek) ? "active" : "" %>'><a href="reek.html">Reek</a></li>
-      <% end %>
-      <% if @roodi %>
-        <li class='even failure <%= (@current_section == :roodi) ? "active" : "" %>'><a href="roodi.html">Roodi</a></li>
-      <% end %>
-      <% if @saikuro %>
-        <li class='even failure <%= (@current_section == :saikuro) ? "active" : "" %>'><a href="saikuro.html">Saikuro</a></li>
-      <% end %>
-      <% if @stats %>
-        <li class='even failure <%= (@current_section == :stats) ? "active" : "" %>'><a href="stats.html">Stats</a></li>
+      <% %w{churn flay flog rcov reek roodi saikuro stats}.each do |section| %>
+        <% if eval("@#{section}") %>
+          <li class='even failure <%= (@current_section == section.to_sym) ? "active" : "" %>'>
+            <a href="<%= "#{section}.html" %>"><%= section.capitalize %></a>
+          </li>
+        <% end %>
       <% end %>
       </ul>
 
