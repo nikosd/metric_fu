@@ -6,7 +6,7 @@ module MetricFu
   # course, in order to use these metrics, their respective gems must
   # be installed on the system.
   AVAILABLE_METRICS = [:churn, :flog, :flay, :reek, 
-                       :roodi, :saikuro, :rcov]
+                       :roodi, :saikuro, :rcov, :dcov]
 
   AVAILABLE_GRAPHS = [:flog, :flay, :reek, :roodi, :rcov]
 
@@ -131,6 +131,8 @@ module MetricFu
                                    "--profile",
                                    "--rails",
                                    "--exclude /gems/,/Library/,/usr/,spec"]}
+      @dcov     = {:test_files => ['app/**/*.rb', 'lib/**/*.rb'],
+                   :dcov_opts => ["-p tmp/metric_fu/scratch/dcov"]}
                                    
       @graph_theme = { :colors => %w(orange purple green white red blue pink yellow),
                        :marker_color => 'blue',

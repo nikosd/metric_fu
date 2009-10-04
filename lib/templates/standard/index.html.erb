@@ -1,4 +1,4 @@
-<html>
+<html> 
 <head>
 	<title>Metric Fu Results</title>
 	<style>
@@ -10,6 +10,9 @@
 	<h1>Metric Fu Results</h1>
   <% if @churn %>
     <p><a href="churn.html">Churn report</a></p>
+  <% end %>
+  <% if @dcov %>
+    <p><a href="dcov.html">Dcov report</a></p>
   <% end %>
   <% if @flay %>
     <p><a href="flay.html">Flay report</a></p>

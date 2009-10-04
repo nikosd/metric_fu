@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>Dcov Code Coverage Results</title>
+	<style>
+	<%= inline_css("default.css") %>	
+	</style>
+</head>
+
+<body>
+	<h2>Dcov Results</h2>
+	<h3>Documentation coverage information.</h3>
+	<p>
+	Total Files: <%=@dcov[:file_count]%><br />
+	<% ["Module","Class","Method"].each do |t| %>
+		Total <%=t.pluralize%>: <%=@dcov["total_#{t.pluralize.downcase}".to_sym]%> with <%=@dcov["#{t.downcase}_coverage".to_sym][:coverage]%> coverage.<br />
+	<% end %>
+	</P>
+	<br/>
+	
+	<% ["Module","Class","Method"].each do |t| %>
+		<h3>Undocumented <%=t.pluralize%>:</h3>
+		<table>
+			<tr>
+				<th><%= t%></th>
+				<th>Location</th>
+			</tr>
+			<%@dcov["#{t.downcase}_coverage".to_sym][:not_covored].each_pair do |k,v| %>
+			<tr>
+				<td><%= k%></td>
+				<td><%= v%></td>
+			</tr>
+			<% end %>
+		</table>
+	<% end %>
+	
+	<p>Generated on <%= Time.now.localtime %></p>
+</body>
+</html>
