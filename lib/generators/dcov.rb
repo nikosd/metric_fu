@@ -86,7 +86,7 @@ module MetricFu
     
     #abstract method override
     def to_h
-      {:dcov=> @dcov}   
+      { :dcov => @dcov }
     end
 
     def underscore(camel_cased_word)
