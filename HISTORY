@@ -1,4 +1,4 @@
-=== MetricFu 1.1.5.x
+=== MetricFu 1.1.5.5 / 2009-9-5
 
 * Basic DCov support added. -- Ben Miller / Nikos Dimitrakopoulos
 * Added option to store data for reports once pr build (at least once pr. minute) -- Jacob Kjeldahl
