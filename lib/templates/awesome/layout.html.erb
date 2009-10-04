@@ -22,17 +22,17 @@
         <% if eval("@#{section}")
             totals = case section.to_sym
               when :flay then @flay[:total_score]
-              when :flog then @flog[:total] / @flog[:average]
+              when :flog then (((@flog[:total] / @flog[:average]) * 100).round.to_f / 100)
               when :rcov then @rcov[:global_percent_run]
               when :stats then "#{@stats[:codeLOC]} lines"
-              else nil
+              else nil # TODO : Calculate also for reek and roodi
             end
         %>
           <li class='even failure <%= (@current_section == section.to_sym) ? "active" : "" %>'>
             <a href="<%= "#{section}.html" %>">
               <%= section.capitalize %>
               <% if totals %>
-                <span class='totals'>(<%= totals %>)</span>
+                <span class='totals'><%= totals %></span>
               <% end %>
             </a>
           </li>

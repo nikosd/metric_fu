@@ -17,9 +17,12 @@
     margin-left: 1em;
     }
     #header #projects li a span.totals {
-      font-size: 0.5em;
-      padding-left: 1em;
+      font-size: 0.4em;
+      vertical-align: top;
+      color: #ccc;
     }
+    #header #projects li a span.totals:before { content: '('; }
+    #header #projects li a span.totals:after { content: ')'; }
   #header #projects li.active{
     background-color:#ED1556;
     color:#FFFFFF;
