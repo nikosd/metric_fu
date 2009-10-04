@@ -1,3 +1,5 @@
+<% items = { "Module" => "Modules", "Class" => "Classes", "Method" => "Methods" } %>
+
 <html>
 <head>
 	<title>Dcov Code Coverage Results</title>
@@ -10,31 +12,34 @@
 	<h2>Dcov Results</h2>
 	<h3>Documentation coverage information.</h3>
 	<p>
-	Total Files: <%=@dcov[:file_count]%><br />
-	<% ["Module","Class","Method"].each do |t| %>
-		Total <%=t.pluralize%>: <%=@dcov["total_#{t.pluralize.downcase}".to_sym]%> with <%=@dcov["#{t.downcase}_coverage".to_sym][:coverage]%> coverage.<br />
-	<% end %>
-	</P>
+    Total Files: <%= @dcov[:file_count] %><br />
+
+    <% items.each_pair do |singular, plural| %>
+    	Total <%= plural %>: <%= @dcov["total_#{plural.downcase}".to_sym]%>
+    	with <%= @dcov["#{singular.downcase}_coverage".to_sym][:coverage]%> coverage.
+    	<br />
+    <% end %>
+  </p>
 	<br/>
-	
-	<% ["Module","Class","Method"].each do |t| %>
-		<h3>Undocumented <%=t.pluralize%>:</h3>
-		<table>
-			<tr>
-				<th><%= t%></th>
-				<th>Location</th>
-			</tr>
-			<% if not_covered_items = @dcov["#{t.downcase}_coverage".to_sym][:not_covered] %>
+
+  <% items.each_pair do |singular, plural| %>
+  	<h3>Undocumented <%= plural %>:</h3>
+  	<table>
+  		<tr>
+  			<th><%= singular %></th>
+  			<th>Location</th>
+  		</tr>
+  		<% if not_covered_items = @dcov["#{singular.downcase}_coverage".to_sym][:not_covered] %>
   			<% not_covered_items.each_pair do |k,v| %>
   			<tr>
-  				<td><%= k%></td>
-  				<td><%= v%></td>
+  				<td><%= k %></td>
+  				<td><%= v %></td>
   			</tr>
   			<% end %>
-			<% end %>
-		</table>
-	<% end %>
-	
+  		<% end %>
+  	</table>
+  <% end %>
+
 	<p>Generated on <%= Time.now.localtime %></p>
 </body>
 </html>

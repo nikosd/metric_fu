@@ -41,7 +41,7 @@ module MetricFu
       sub_section_sym = ""    #aid for parsing sub sections
       item_name = ""          #aid for parsing sub sections
       output1.map! do |line|  #parse each line for essential data (totals, coverage percentage)
-        next if line.blank?                #skip blank lines
+        next if line == ""                #skip blank lines
         next if !line[/Not covered:/].nil? #skip these lines
         next if line[/Generating report/]  #skip these lines
         next if line[/Writing report/]     #skip these lines
