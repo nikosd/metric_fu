@@ -28,7 +28,7 @@ module MetricFu
         {:content => @content, :was_run => @was_run}
       end
     end
-    
+
     def self.success?
       @@success
     end
@@ -51,7 +51,6 @@ module MetricFu
         end
       end
     end
-
 
     def analyze
       output = File.open(MetricFu::Rcov.metric_directory + '/rcov.txt').read
@@ -80,16 +79,16 @@ module MetricFu
         @global_total_lines_run += lines_run = lines.find_all {|line| line[:was_run] == true }.length
         @global_total_lines += total_lines = lines.length
         percent_run = ((lines_run.to_f / total_lines.to_f) * 100).round
-        files[fname][:percent_run] = percent_run 
+        files[fname][:percent_run] = percent_run
       end
       @rcov = files
     end
 
     def to_h
       global_percent_run = ((@global_total_lines_run.to_f / @global_total_lines.to_f) * 100)
-      {:rcov => @rcov.merge({:global_percent_run => round_to_tenths(global_percent_run) })}   
+      {:rcov => @rcov.merge({:global_percent_run => round_to_tenths(global_percent_run) })}
     end
-    
+
     private
     # Copy rcov build log to stdout
     def print_head
