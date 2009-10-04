@@ -73,10 +73,10 @@ module MetricFu
           item_name = line.strip
         else
           #get item data and store pair
-          if output_hash[sub_section_sym][:not_covored].nil?
-            output_hash[sub_section_sym] = output_hash[sub_section_sym].merge(:not_covored=>{})
+          if output_hash[sub_section_sym][:not_covered].nil?
+            output_hash[sub_section_sym] = output_hash[sub_section_sym].merge(:not_covered=>{})
           end
-          output_hash[sub_section_sym][:not_covored] = output_hash[sub_section_sym][:not_covored].merge({item_name=>line.strip})
+          output_hash[sub_section_sym][:not_covered] = output_hash[sub_section_sym][:not_covered].merge({item_name=>line.strip})
           item_name = ""
         end
       end

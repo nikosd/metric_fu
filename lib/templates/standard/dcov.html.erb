@@ -24,11 +24,13 @@
 				<th><%= t%></th>
 				<th>Location</th>
 			</tr>
-			<%@dcov["#{t.downcase}_coverage".to_sym][:not_covored].each_pair do |k,v| %>
-			<tr>
-				<td><%= k%></td>
-				<td><%= v%></td>
-			</tr>
+			<% if not_covered_items = @dcov["#{t.downcase}_coverage".to_sym][:not_covered] %>
+  			<% not_covered_items.each_pair do |k,v| %>
+  			<tr>
+  				<td><%= k%></td>
+  				<td><%= v%></td>
+  			</tr>
+  			<% end %>
 			<% end %>
 		</table>
 	<% end %>
