@@ -1,3 +1,27 @@
+=== MetricFu 1.1.5.x
+* Basic DCov support added. -- Ben Miller / Nikos Dimitrakopoulos
+* Added option to store data for reports once pr build (at least once pr. minute) -- Jacob Kjeldahl
+* Generated files are now xhtml compliant. The encode method will replace <,> and & with the corresponding entities. -- Jacob Kjeldahl
+* The graphs are now inserted using a helper method. -- Jacob Kjeldahl
+* Totals are now shown on the index page -- Jacob Kjeldahl
+* The name rendered in the report is now extracted correctly for builds on CC.rb -- Jacob Kjeldahl
+* Rcov build log is now printed to screen to have it picked up by CC. Rcov can report whether tests where successfull and the rake task metrics:all will fail if rcov is unsuccessfull -- Jacob Kjeldahl
+* Added link to filename in reek report -- Jacob Kjeldahl
+* Make graphs start at 0 -- Kevin Scaldeferri
+* Allow roodi config file to be specified -- Kevin Scaldeferri
+* Now detects and parses output from reek v1.2 -- Kevin Scaldeferri
+* DRY the code in the awesome template. -- Nikos Dimitrakopoulos
+* Navigation bar in the header. -- Nikos Dimitrakopoulos
+
+To be removed :
+
+* Force newer flog/flay -- Lucas Maxwell
+* Make rcov dependency point to jruby compatible one -- Lucas Maxwell
+
+Notes:
+
+* Ruby 1.9x seems broken
+
 === MetricFu 1.1.5 / 2009-8-13
 
 * Previous Ruby 1.9 fix was not quite fix-y enough
