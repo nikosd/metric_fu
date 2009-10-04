@@ -1,4 +1,5 @@
 === MetricFu 1.1.5.x
+
 * Basic DCov support added. -- Ben Miller / Nikos Dimitrakopoulos
 * Added option to store data for reports once pr build (at least once pr. minute) -- Jacob Kjeldahl
 * Generated files are now xhtml compliant. The encode method will replace <,> and & with the corresponding entities. -- Jacob Kjeldahl
@@ -12,11 +13,7 @@
 * Now detects and parses output from reek v1.2 -- Kevin Scaldeferri
 * DRY the code in the awesome template. -- Nikos Dimitrakopoulos
 * Navigation bar in the header. -- Nikos Dimitrakopoulos
-
-To be removed :
-
-* Force newer flog/flay -- Lucas Maxwell
-* Make rcov dependency point to jruby compatible one -- Lucas Maxwell
+* Removed all install-time dependencies - they are checked only at runtime. -- Nikos Dimitrakopoulos
 
 Notes:
 

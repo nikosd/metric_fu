@@ -3,7 +3,14 @@ module MetricFu
   
   class Churn < Generator
 
-    
+    def self.verify_dependencies!
+      begin
+        require 'chronic'
+      rescue
+        raise 'sudo gem install mojombo-chronic # if you want the churn tasks'
+      end
+    end
+
     def initialize(options={})
       super
       if self.class.git?
