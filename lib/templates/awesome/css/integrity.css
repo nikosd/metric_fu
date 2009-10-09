@@ -211,8 +211,12 @@ a {
         #content #projects li a.failed {
           color: #ff1100; }
         #content #projects li a span.totals {
-          font-size: 0.5em;
-          padding-left: 1em;}
+          font-size: 0.4em;
+          padding-left: 0.5em;
+          color: #555555;
+          vertical-align: middle;}
+        #content #projects li a span.totals:before { content: '('; }
+        #content #projects li a span.totals:after { content: ')'; }
       #content #projects li .meta {
         position: absolute;
         right: .6em;
