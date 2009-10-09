@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='en' http-equiv='Content-Language' />
+    <title>metrics</title>
+    <style type="text/css">
+    <%= inline_css("css/reset.css") %>
+    <%= inline_css("css/buttons.css") %>
+    <%= inline_css("css/integrity.css") %>
+    <%= inline_css("css/navigation.css") %>
+    <%= inline_css("css/default.css") %>
+    </style>
+    <link rel="SHORTCUT ICON" href="/favicon.ico"/>
+  </head>
+  <body>
+    <div id='header'>
+      <h1><a href="/">metrics</a> | <a href="index.html"><%= @name %></a></h1>
+
+      <ul id='projects'>
+      <% %w{churn flay flog rcov dcov reek roodi saikuro stats}.each do |section| %>
+        <% if eval("@#{section}")
+            totals = case section.to_sym
+              when :flay then @flay[:total_score]
+              when :flog then (((@flog[:total] / @flog[:average]) * 100).round.to_f / 100)
+              when :rcov then @rcov[:global_percent_run]
+              when :stats then "#{@stats[:codeLOC]} lines"
+              else nil # TODO : Calculate also for reek and roodi
+            end
+        %>
+          <li class='even failure <%= (@current_section == section.to_sym) ? "active" : "" %>'>
+            <a href="<%= "#{section}.html" %>">
+              <%= section.capitalize %>
+              <% if totals %>
+                <span class='totals'><%= totals %></span>
+              <% end %>
+            </a>
+          </li>
+        <% end %>
+      <% end %>
+      </ul>
+
+      <address class='watermark'>
+        built with
+        <a href='http://metric-fu.rubyforge.org/'>metric-fu</a>
+      </address>
+    </div>
+    <div id='content'>
+      <%= @html %>
+    </div>
+  </body>
+</html>

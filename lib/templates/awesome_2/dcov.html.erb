@@ -1,0 +1,36 @@
+<% items = { "Module" => "Modules", "Class" => "Classes", "Method" => "Methods" } %>
+
+<h3>Dcov Code Documentation Results</h3>
+<p><a href='http://dcov.rubyforge.org/'>DCov</a> measures code documentation coverage.</p>
+<br />
+
+<p>
+  Total Files: <%= @dcov[:file_count] %><br />
+
+  <% items.each_pair do |singular, plural| %>
+  	Total <%= plural %>: <%= @dcov["total_#{plural.downcase}".to_sym] %>
+  	with <%= @dcov["#{singular.downcase}_coverage".to_sym][:coverage] %> coverage.
+  	<br />
+  <% end %>
+</p>
+<br />
+
+<% items.each_pair do |singular, plural| %>
+	<h3>Undocumented <%= plural %>:</h3>
+	<table>
+		<tr>
+			<th><%= singular %></th>
+			<th>Location</th>
+		</tr>
+		<% if not_covered_items = @dcov["#{singular.downcase}_coverage".to_sym][:not_covered] %>
+			<% not_covered_items.each_pair do |k,v| %>
+			<tr>
+				<td><%= k %></td>
+				<td><%= v %></td>
+			</tr>
+			<% end %>
+		<% end %>
+	</table>
+<% end %>
+
+<p>Generated on <%= Time.now.localtime %></p>
