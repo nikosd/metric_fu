@@ -26,5 +26,6 @@ Dir[File.join(base_dir, '*.rb')].each{|l| require l }
 Dir[File.join(generator_dir, '*.rb')].each {|l| require l }
 Dir[File.join(template_dir, 'standard/*.rb')].each {|l| require l}
 Dir[File.join(template_dir, 'awesome/*.rb')].each {|l| require l}
+Dir[File.join(template_dir, 'awesome_2/*.rb')].each {|l| require l}
 require graph_dir + "/grapher"
 Dir[File.join(graph_dir, '*.rb')].each {|l| require l}

@@ -1,4 +1,4 @@
-class AwesomeTemplate < MetricFu::Template
+class AwesomeTwoTemplate < MetricFu::Template
 
   def write
     # Getting rid of the crap before and after the project name from integrity
