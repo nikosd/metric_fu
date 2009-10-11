@@ -12,10 +12,11 @@
     line-height: 1.3em;
     text-align: center;
   }
-  #header #projects li{
+  #header #projects li {
     display: inline-block;
-    margin-left: 1em;
+    margin-left: 0;
     }
+    #header #projects li a { padding: 0 0.5em; }
     #header #projects li a span.totals {
       font-size: 0.4em;
       vertical-align: top;
@@ -23,8 +24,8 @@
     }
     #header #projects li a span.totals:before { content: '('; }
     #header #projects li a span.totals:after { content: ')'; }
-  #header #projects li.active{
+  #header #projects li.active {
     background-color:#ED1556;
     color:#FFFFFF;
     }
-    #header #projects li.active a{ color:#FFFFFF; }
+    #header #projects li.active a { color:#FFFFFF; }
